@@ -1,0 +1,25 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("//:rules/factory.bzl", "factory")
+
+factory(
+    name = "go_factory",
+    config = "config/config.json",
+    package = "main",
+    out = "stone.go",
+)
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "print.go",
+        "stone.go",
+    ],
+    importpath = "github.com/linzhp/codegen_example/stone",
+    visibility = ["//visibility:public"],
+)
+
+go_binary(
+    name = "stone",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

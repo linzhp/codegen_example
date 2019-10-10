@@ -1,0 +1,4 @@
+filegroup(
+  name = "config",
+  srcs = glob(["*.json"]),
+)
