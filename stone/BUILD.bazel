@@ -5,14 +5,13 @@ factory(
     name = "go_factory",
     config = "config/config.json",
     package = "main",
-    out = "stone.go",
 )
 
 go_library(
     name = "go_default_library",
     srcs = [
         "print.go",
-        "stone.go",
+        ":go_factory",  # keep
     ],
     importpath = "github.com/linzhp/codegen_example/stone",
     visibility = ["//visibility:public"],
