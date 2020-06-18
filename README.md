@@ -83,7 +83,7 @@ If it succeeds, we can find /tmp/out.go is generated. As the output itself is a 
 
 Bazel has a go_library rule to compile Go files, so we don’t need to worry about compilation. However, for the toy code generator we just invented, we need to write a Bazel rule from scratch. A rule definition consists of at least two parts: a declaration and an implementation. We will start with a rule declaration in this section and cover the implementation in the next.
 
-```go
+```python
 load("@io_bazel_rules_go//go:def.bzl", "go_rule")
 
 def _codegen_impl(ctx):
@@ -121,7 +121,7 @@ More information about the attributes can be found in the official [Bazel docume
 ## Rule implementation
 Rule implementation is the actual code that calls the code generator, reads the input, and generates the Go file, according to the values of rule attributes users pass in.
 
-```go
+```python
 def _codegen_impl(ctx):
     out = ctx.actions.declare_file("out.go")
     args = ctx.actions.args()
